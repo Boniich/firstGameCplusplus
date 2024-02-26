@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#include <conio.h>
 
 void setCoor(const int x, const int y) {
     HANDLE hcon;
@@ -36,6 +37,8 @@ class Character
 public:
     Character(int x, int y, int hearts, int lifes) : _x(x), _y(y), _hearts(hearts), _lifes(lifes) {};
     void print();
+    void deleteCharacter();
+    void move();
 };
 
 void Character::print() {
@@ -76,6 +79,53 @@ void Character::print() {
 
 }
 
+void Character::deleteCharacter()
+{
+    //head
+    setCoor(_x, _y);         printf("           ");
+    setCoor(_x + 1, _y);     printf("           ");
+    //neck
+    setCoor(_x - 1, _y + 1); printf("           ");
+    setCoor(_x, _y + 1);     printf("           ");
+    setCoor(_x + 1, _y + 1); printf("           ");
+    setCoor(_x + 2, _y + 1); printf("           ");
+    //body
+    setCoor(_x, _y + 2);     printf("           ");
+    setCoor(_x + 1, _y + 2); printf("           ");
+    setCoor(_x, _y + 3);     printf("           ");
+    setCoor(_x + 1, _y + 3); printf("           ");
+    setCoor(_x, _y + 4);     printf("           ");
+    setCoor(_x + 1, _y + 4); printf("           ");
+
+    //arms 
+    // left arm
+    setCoor(_x - 2, _y + 2); printf("           ");
+    setCoor(_x - 2, _y + 3); printf("           ");
+
+    // right arm
+    setCoor(_x + 3, _y + 2); printf("           ");
+    setCoor(_x + 3, _y + 3); printf("           ");
+
+    //feet
+    // left foot
+    setCoor(_x - 1, _y + 5); printf("           ");
+
+    // right foot
+    setCoor(_x + 2, _y + 5); printf("           ");
+}
+
+void Character::move()
+{
+    if (_kbhit()) {
+        char key = _getch();
+        //borrar
+        deleteCharacter();
+        if (key == 'a') _x--;
+        if (key == 'd') _x++;
+        print();
+    }
+}
+
 
 int main()
 {
@@ -86,6 +136,7 @@ int main()
     character.print();
     while (!gameOver) {
 
+        character.move();
         Sleep(30);
     }
 
