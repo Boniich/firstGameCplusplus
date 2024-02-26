@@ -28,14 +28,63 @@ void printWorld() {
 
 }
 
+class Character
+{
+    int _x, _y;
+    int _hearts;
+    int _lifes;
+public:
+    Character(int x, int y, int hearts, int lifes) : _x(x), _y(y), _hearts(hearts), _lifes(lifes) {};
+    void print();
+};
+
+void Character::print() {
+    //head
+    setCoor(_x, _y); printf("%c", 219);
+    setCoor(_x+1, _y); printf("%c", 219);
+    //neck
+    setCoor(_x-1, _y+1); printf("%c", 219);
+    setCoor(_x, _y + 1); printf("%c", 219);
+    setCoor(_x + 1, _y + 1); printf("%c", 219);
+    setCoor(_x + 2, _y + 1); printf("%c", 219);
+    //body
+    setCoor(_x, _y + 2); printf("%c", 219);
+    setCoor(_x + 1, _y + 2); printf("%c", 219);
+    setCoor(_x, _y + 3); printf("%c", 219);
+    setCoor(_x + 1, _y + 3); printf("%c", 219);
+    setCoor(_x, _y + 4); printf("%c", 219);
+    setCoor(_x + 1, _y + 4); printf("%c", 219);
+
+    //arms 
+    // left arm
+    setCoor(_x - 2, _y + 2); printf("%c", 219);
+    setCoor(_x - 2, _y + 3); printf("%c", 219);
+
+    // right arm
+    setCoor(_x + 3, _y + 2); printf("%c", 219);
+    setCoor(_x + 3, _y + 3); printf("%c", 219);
+
+    //feet
+    // left foot
+    setCoor(_x-1 , _y + 5); printf("%c", 219);
+
+    // right foot
+    setCoor(_x + 2, _y + 5); printf("%c", 219);
+
+
+
+
+}
+
 
 int main()
 {
     printWorld();
     bool gameOver = false;
+    Character character(15, 20, 3, 3);
 
+    character.print();
     while (!gameOver) {
-        setCoor(5, 15); printf("*");
 
         Sleep(30);
     }
