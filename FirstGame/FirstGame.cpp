@@ -13,7 +13,7 @@ void setCoor(const int x, const int y) {
 }
 
 void printWorld() {
-    for (int i = 2; i < 78; i++) {
+    for (int i = 2; i < 190; i++) {
         setCoor(i, 32); printf("%c", 219);
         setCoor(i, 31); printf("%c", 219);
     }
@@ -21,6 +21,9 @@ void printWorld() {
     for (int i = 0; i < 33; i++) {
         setCoor(1, i); printf("%c", 219);
         setCoor(2, i); printf("%c", 219);
+
+        setCoor(189, i); printf("%c", 219);
+        setCoor(190, i); printf("%c", 219);
     }
 
 }
@@ -29,5 +32,14 @@ void printWorld() {
 int main()
 {
     printWorld();
+    bool gameOver = false;
+
+    while (!gameOver) {
+        setCoor(5, 15); printf("*");
+
+        Sleep(30);
+    }
+
+    return 0;
 }
 
